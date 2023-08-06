@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const db = async () => {
     try {
         mongoose.set("strictQuery", false);
-        await mongoose.connect("mongodb://localhost:27017/energy", {
+        await mongoose.connect(process.env.DB, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
