@@ -39,6 +39,15 @@ app.use('/energy', postRoutes);
 app.use('/energy', wallPostRoutes);
 app.use('/energy', authRoutes);
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
+
 const PORT = process.env.PORT || 6000;
 
 app.listen(PORT, () => {
